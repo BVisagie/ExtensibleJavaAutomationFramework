@@ -9,7 +9,7 @@
 
     <test name="Regression1">
         <classes>
-            <class name="SimpleTest"/>
+            <class name="LandingPageTests"/>
         </classes>
     </test>
 </suite>

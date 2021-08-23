@@ -91,6 +91,7 @@ public class Session {
 
         edgeOptions.addArguments("start-maximized");
 
+        testSession.logger.info("Now loading Edge options: " + edgeOptions);
         return new EdgeDriver(edgeOptions);
     }
 
@@ -111,7 +112,6 @@ public class Session {
         chromeOptions.addArguments("start-maximized");
 
         testSession.logger.info("Now loading Chrome options: " + chromeOptions);
-
         return new ChromeDriver(chromeOptions);
 
     }
