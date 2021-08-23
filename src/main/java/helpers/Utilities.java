@@ -23,10 +23,6 @@ public class Utilities {
     }
 
     public boolean stringValidBoolean(String inputString) {
-        if (inputString.equalsIgnoreCase("true") || inputString.equalsIgnoreCase("false")) {
-            return true;
-        } else {
-            return false;
-        }
+        return inputString.equalsIgnoreCase("true") || inputString.equalsIgnoreCase("false");
     }
 }
