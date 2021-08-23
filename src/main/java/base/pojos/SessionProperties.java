@@ -10,9 +10,9 @@ public class SessionProperties {
     public WebDriverWait driverWait;
     public SupportedBrowsers selectedBrowser;
     public Logger logger;
-    public String logFileUniqueId;
     public String urlUnderTest;
     public boolean uiTestCase;
     public boolean uiTestRunHeadless;
     public boolean browserIncognito;
+    public boolean pipelineRun;
 }

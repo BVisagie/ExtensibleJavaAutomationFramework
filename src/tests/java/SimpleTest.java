@@ -15,7 +15,7 @@ public class SimpleTest {
 
     @AfterClass
     public void tearDown() {
-
+        sessionProperties.driver.quit();
     }
 
     @Test(testName = "My first Test Case")
