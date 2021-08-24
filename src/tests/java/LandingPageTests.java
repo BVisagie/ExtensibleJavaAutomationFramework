@@ -1,7 +1,9 @@
 import base.Session;
 import base.pojos.SessionProperties;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pageobjects.landing.LandingPage;
 import pageobjects.searchresult.SearchResultsPage;
 

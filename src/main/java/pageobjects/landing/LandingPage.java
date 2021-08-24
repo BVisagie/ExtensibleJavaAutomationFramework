@@ -13,6 +13,7 @@ public class LandingPage {
     private final By supportedLanguagesDropDownSelectXpath = new By.ByXPath("//select[@id='searchLanguage']");
     private final By mainSearchInputXpath = new By.ByXPath("//input[@id='searchInput']");
     private final By mainSearchButtonXpath = new By.ByXPath("//button[@type='submit']");
+    private final By englishMainPageLinkXpath = new By.ByXPath("//a[@id='js-link-box-en']");
 
     public LandingPage(SessionProperties testSession) {
         this.testSession = testSession;
@@ -36,6 +37,11 @@ public class LandingPage {
     public LandingPage clickSearch() {
 
         testSession.driver.findElement(mainSearchButtonXpath).click();
+        return this;
+    }
+
+    public LandingPage clickEnglishMainPageLink() {
+        testSession.driver.findElement(englishMainPageLinkXpath).click();
         return this;
     }
 }

@@ -12,4 +12,9 @@
             <class name="LandingPageTests"/>
         </classes>
     </test>
+    <test name="Regression2">
+        <classes>
+            <class name="MainPageTests"/>
+        </classes>
+    </test>
 </suite>
