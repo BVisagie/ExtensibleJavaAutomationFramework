@@ -1,29 +1,34 @@
 package pageobjects.main;
 
 import base.pojos.SessionProperties;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
 
-    private final SessionProperties testSession;
-    private final By fromTodaysFeaturedArticleSectionXpath = new By.ById("From_today's_featured_article");
-    private final By inTheNewsSectionXpath = new By.ById("In_the_news");
-    private final By fromThisDaySectionXpath = new By.ById("On_this_day");
-    private final By didYouKnowSectionXpath = new By.ById("Did_you_know_...");
-    private final By todaysFeaturedPictureSectionXpath = new By.ById("Today's_featured_picture");
-
+    @FindBy(id = "From_today's_featured_article")
+    WebElement fromTodaysFeaturedArticleSectionXpath;
+    @FindBy(id = "In_the_news")
+    WebElement inTheNewsSectionXpath;
+    @FindBy(id = "On_this_day")
+    WebElement fromThisDaySectionXpath;
+    @FindBy(id = "Did_you_know_...")
+    WebElement didYouKnowSectionXpath;
+    @FindBy(id = "Today's_featured_picture")
+    WebElement todaysFeaturedPictureSectionXpath;
 
     public MainPage(SessionProperties testSession) {
-        this.testSession = testSession;
+        PageFactory.initElements(testSession.driver, this);
     }
 
     public boolean verifyMainPageElementsExist() {
 
-        String fromTodaysFeaturedArticleSectionText = testSession.driver.findElement(fromTodaysFeaturedArticleSectionXpath).getText();
-        String inTheNewsSectionText = testSession.driver.findElement(inTheNewsSectionXpath).getText();
-        String fromThisDaySectionText = testSession.driver.findElement(fromThisDaySectionXpath).getText();
-        String didYouKnowSectionText = testSession.driver.findElement(didYouKnowSectionXpath).getText();
-        String todaysFeaturedPictureSectionText = testSession.driver.findElement(todaysFeaturedPictureSectionXpath).getText();
+        String fromTodaysFeaturedArticleSectionText = fromTodaysFeaturedArticleSectionXpath.getText();
+        String inTheNewsSectionText = inTheNewsSectionXpath.getText();
+        String fromThisDaySectionText = fromThisDaySectionXpath.getText();
+        String didYouKnowSectionText = didYouKnowSectionXpath.getText();
+        String todaysFeaturedPictureSectionText = todaysFeaturedPictureSectionXpath.getText();
 
         String expectedFromTodaysFeaturedArticleSectionText = "From today's featured article";
         String expectedInTheNewsSectionText = "In the news";
