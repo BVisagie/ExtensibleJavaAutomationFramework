@@ -4,11 +4,15 @@ import base.enums.ConfigurationProperties;
 import base.enums.SupportedBrowsers;
 import base.pojos.SessionProperties;
 import helpers.Utilities;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.LoggerFactory;
 
 public class Session {
@@ -61,7 +65,8 @@ public class Session {
             switch (testSession.selectedBrowser) {
                 case EDGE -> testSession.driver = SetupEdgeWebdriver(testSession);
                 case CHROME -> testSession.driver = SetupChromeWebdriver(testSession);
-                case FIREFOX -> testSession.driver = SetupFireFoxWebdriver();
+                case FIREFOX -> testSession.driver = SetupFireFoxWebdriver(testSession);
+                case SAFARI -> testSession.driver = SetupSafariWebdriver(testSession);
             }
         }
 
@@ -73,8 +78,7 @@ public class Session {
 
     private WebDriver SetupEdgeWebdriver(SessionProperties testSession) {
 
-        System.setProperty("webdriver.edge.driver", "./drivers/msedgedriver.exe");
-
+        WebDriverManager.edgedriver().setup();
         EdgeOptions edgeOptions = new EdgeOptions();
 
         if (testSession.browserIncognito) {
@@ -97,8 +101,7 @@ public class Session {
 
     private WebDriver SetupChromeWebdriver(SessionProperties testSession) {
 
-        System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-
+        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
 
         if (testSession.browserIncognito) {
@@ -116,9 +119,36 @@ public class Session {
 
     }
 
-    private WebDriver SetupFireFoxWebdriver() {
-        return null;
+    private WebDriver SetupFireFoxWebdriver(SessionProperties testSession) {
+
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+        if (testSession.browserIncognito) {
+            firefoxOptions.addArguments("incognito");
+        }
+
+        if (testSession.uiTestRunHeadless) {
+            firefoxOptions.setHeadless(true);
+        }
+
+        firefoxOptions.addArguments("start-maximized");
+
+        testSession.logger.info("Now loading Firefox options: " + firefoxOptions);
+        return new FirefoxDriver(firefoxOptions);
     }
 
+    private WebDriver SetupSafariWebdriver(SessionProperties testSession) {
+
+        WebDriverManager.safaridriver().setup();
+
+        /* No useful options known of at this stage
+        SafariOptions safariOptions = new SafariOptions();
+        testSession.logger.info("Now loading Safari options: " + safariOptions);
+        return new SafariDriver(safariOptions);
+        */
+
+        return new SafariDriver();
+    }
 
 }

@@ -1,9 +1,6 @@
 import base.Session;
 import base.pojos.SessionProperties;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.*;
 import pageobjects.landing.LandingPage;
 import pageobjects.main.MainPage;
 
@@ -11,17 +8,18 @@ public class MainPageTests {
 
     private SessionProperties testSession;
 
-    @BeforeClass
+    @BeforeEach
     public void setUp() {
         testSession = new Session().setupTestSession(true);
     }
 
-    @AfterClass
+    @AfterEach
     public void tearDown() {
         testSession.driver.quit();
     }
 
-    @Test(testName = "Main Page Title Test")
+    @Test
+    @DisplayName("Main Page Title Test")
     public void mainPageTitleTest() {
 
         testSession.driver.navigate().to(testSession.urlUnderTest);
@@ -30,13 +28,14 @@ public class MainPageTests {
 
         String expectedPageTitle = "Wikipedia, the free encyclopedia";
         String actualPageTitle = testSession.driver.getTitle();
-        Assert.assertEquals(actualPageTitle, expectedPageTitle);
+        Assertions.assertEquals(actualPageTitle, expectedPageTitle);
 
         boolean mainPageElementsFound = new MainPage(testSession).verifyMainPageElementsExist();
-        Assert.assertTrue(mainPageElementsFound);
+        Assertions.assertTrue(mainPageElementsFound);
     }
 
-    @Test(testName = "Main Page Elements Present Test")
+    @Test
+    @DisplayName("Main Page Elements Present Test")
     public void mainPageElementTest() {
 
         testSession.driver.navigate().to(testSession.urlUnderTest);
@@ -44,6 +43,6 @@ public class MainPageTests {
         new LandingPage(testSession).clickEnglishMainPageLink();
 
         boolean mainPageElementsFound = new MainPage(testSession).verifyMainPageElementsExist();
-        Assert.assertTrue(mainPageElementsFound);
+        Assertions.assertTrue(mainPageElementsFound);
     }
 }
