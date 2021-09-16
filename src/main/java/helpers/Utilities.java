@@ -1,6 +1,7 @@
 package helpers;
 
 import base.enums.ConfigurationProperties;
+import base.pojos.SessionProperties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,5 +25,9 @@ public class Utilities {
 
     public boolean stringValidBoolean(String inputString) {
         return inputString.equalsIgnoreCase("true") || inputString.equalsIgnoreCase("false");
+    }
+
+    public void tearDown(SessionProperties testSession) {
+        testSession.driver.quit();
     }
 }
