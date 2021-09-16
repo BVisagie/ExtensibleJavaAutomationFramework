@@ -2,7 +2,6 @@ package base.pojos;
 
 import base.enums.SupportedBrowsers;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
 public class SessionProperties {

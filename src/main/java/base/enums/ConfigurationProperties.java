@@ -6,5 +6,4 @@ public enum ConfigurationProperties {
     UITESTRUNHEADLESS,
     BROWSERINCOGNITO,
     PIPELINERUN,
-    EDGEOPTIONSBINARYLOCATION,
 }
